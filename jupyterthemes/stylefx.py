@@ -255,9 +255,9 @@ def style_layout(style_less,
     promptPadding = '.25em'
     promptBorder = '2px solid @prompt-line'
     tcPromptBorder = '2px solid @tc-prompt-std'
-    promptMinWidth = 11.5
-    outpromptMinWidth = promptMinWidth +.5 # remove + 3 since it will overlay output print() text
-    tcPromptWidth = promptMinWidth + .5
+    promptMinWidth = 12
+    outpromptMinWidth = promptMinWidth + .5 # remove + 3 since it will overlay output print() text
+    tcPromptWidth = outpromptMinWidth
     tcPromptFontsize = "@prompt-fontsize"
     ccOutputBG = '@cc-output-bg-default'
 
@@ -266,8 +266,8 @@ def style_layout(style_less,
     if altprompt:
         promptPadding = '.1em'
         promptMinWidth = 8
-        outpromptMinWidth = promptMinWidth + .5
-        tcPromptWidth = promptMinWidth + .5
+        outpromptMinWidth = promptMinWidth + 3
+        tcPromptWidth = promptMinWidth + 3
         promptText = 'transparent'
         tcPromptBorder = '2px solid transparent'
     if altmd:
@@ -318,6 +318,18 @@ def style_layout(style_less,
     with fileOpen(comp_style, 'r') as codemirror:
         style_less += codemirror.read() + '\n'
 
+    style_less += '''\n.file_size {
+ width: 80px;
+}
+
+div.prompt_container {
+ border-right: 2px solid #49483e;
+}
+
+.CodeMirror-dialog {
+ color: black;
+}\n'''
+
     style_less += toggle_settings(
         toolbar, nbname, hideprompt, kernellogo) + '\n'
     if vimext:
@@ -333,8 +345,9 @@ def toggle_settings(
 
     toggle = ''
     if toolbar:
-        toggle += 'div#maintoolbar {margin-left: -4px !important;}\n'
-        toggle += '.toolbar.container {width: 100% !important;}\n'
+    #    toggle += 'div#maintoolbar {margin-left: 8px !important;}\n'
+    #    toggle += '.toolbar.container {width: 100% !important;}\n'
+        pass
     else:
         toggle += 'div#maintoolbar {display: none !important;}\n'
     if nbname:

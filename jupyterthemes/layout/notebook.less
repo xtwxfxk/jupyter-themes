@@ -36,17 +36,14 @@ a:hover, a:focus {
 }
 div#maintoolbar {
     position: absolute;
-    width: 90%;
-    margin-left: -10%;
-    padding-right: 8%;
-    float: left;
-    // background: transparent !important;
-    background: @notebook-bg !important;
-    background-color: @notebook-bg !important;
+    width: @cell-width;
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent !important;
 }
 #maintoolbar {
     margin-bottom: -3px;
-    margin-top: 2px !important;
+    margin-top: 0px;
     border: 0px;
     min-height: 27px;
     padding-top: 2px;
@@ -56,6 +53,7 @@ div#maintoolbar {
     width: 75%;
     margin-right: auto;
     margin-left: auto;
+    float: left;
 }
 /*********************************************************/
 /*** INTRO-PAGE TOOLBAR, LIST CONTAINERS, AND NAV TABS ***/
@@ -126,6 +124,9 @@ div.running_list_info.toolbar_info {
 #tree-selector {
     padding: 0px;
     border-color: transparent;
+}
+#sort_buttons {
+    padding: 0px;
 }
 #project_name > ul > li > a > i.fa.fa-home {
     color: @item-theme;
@@ -256,6 +257,7 @@ body > #header {
 .list_container > div {
     border-bottom: 1px solid @selected-third;
     font-size: @nb-fontsize;
+    padding-bottom: 5px;
 }
 .list_header > div, .list_item > div {
     padding-top: 6px;
@@ -698,7 +700,6 @@ div.notification_widget.info,
 div#notification_notebook.notification_widget.btn.btn-xs.navbar-btn {
     font-size: 9pt !important;
     z-index: 0;
-    margin-top: -5px !important;
 }
 #modal_indicator {
     float: right !important;
@@ -931,7 +932,7 @@ div.kse-dropdown > .dropdown-menu,
     box-shadow: none;
     text-shadow: none;
     border-radius: 3px;
-    font-size: @nb-fontsize !important;
+    font-size: initial;
 }
 .btn:hover,
 .btn:active:hover,
@@ -1013,7 +1014,6 @@ div.kse-dropdown > .dropdown-menu,
     border: 0px solid @button-panel-bg;
     border-bottom: 2px solid transparent;
     margin-left: 5px;
-    padding-top: 4px !important;
 }
 .item_buttons > .btn:hover,
 .item_buttons > .btn-group:hover,
@@ -1032,13 +1032,12 @@ div.kse-dropdown > .dropdown-menu,
     transition: none;
 }
 .item_buttons {
-    line-height: 1.5em !important;
 }
 .item_buttons .btn {
     min-width: 11ex;
 }
 .btn-group > .btn:first-child {
-    margin-left: 0px;
+    margin-left: 3px;
 }
 .btn-group > .btn-mini,
 .btn-sm,
@@ -1062,9 +1061,9 @@ div.kse-dropdown > .dropdown-menu,
     padding: 2px 5px;
     line-height: 1.45;
 }
-// .btn-group > .btn:first-child {
-//     margin-left: 3px;
-// }
+.btn-group > .btn:first-child {
+    margin-left: 3px;
+}
 div#new-buttons > button,
 #new-buttons > button,
 div#refresh_notebook_list,
@@ -1392,12 +1391,12 @@ input, button, select, textarea {
     border: 1px solid @dropdown-border;
 }
 select.form-control.select-xs {
-    height: 30px;
+    height: 33px;
     font-size: @nb-fontsize;
 }
 .toolbar select, .toolbar label {
     width: auto;
-    vertical-align: top;
+    vertical-align: middle;
     margin-right: 0px;
     margin-bottom: 0px;
     display: inline;
@@ -1408,11 +1407,6 @@ select.form-control.select-xs {
     background-color: @button-bg !important;
     border: 2px solid @button-border !important;
 }
-
-.toolbar .btn {
-    padding: 3px 8px;
-}
-
 .form-control:focus {
     border-color: @item-theme;
     outline: 2px solid @prompt-line;
@@ -1475,8 +1469,8 @@ div.output.output_scroll {
 
 /******* Smooth Fonts ********/
 HTML, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, span, a {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: subpixel-antialiased;
     font-weight: 400;
 }
 
